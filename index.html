@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chính Sách Quyền Riêng Tư | Vẽ Sơ Đồ Điện - PIC2AI</title>
+  <meta name="description" content="Chính sách quyền riêng tư và bảo mật dữ liệu của ứng dụng Vẽ Sơ Đồ Điện (VeSoDoKhaoSat) phát triển bởi PIC2AI.">
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --primary-light: #e0f2fe;
+      --accent: #10b981;
+      --accent-light: #d1fae5;
+      --slate-900: #0f172a;
+      --slate-800: #1e293b;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-500: #64748b;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f8fafc;
+      --card-bg: #ffffff;
+      --radius: 12px;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.65;
+      color: var(--slate-700);
+      background-color: var(--slate-50);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Header & Navigation */
+    header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #ffffff;
+      padding: 3.5rem 1.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(2, 132, 199, 0.25) 0%, rgba(15, 23, 42, 0) 70%);
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    .brand-icon {
+      width: 46px;
+      height: 46px;
+      background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
+    }
+
+    .brand-icon svg {
+      width: 26px;
+      height: 26px;
+      fill: none;
+      stroke: #ffffff;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .brand-text h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .brand-text span {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+
+    /* Language Switcher */
+    .lang-switcher {
+      display: flex;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 30px;
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .lang-btn:hover {
+      color: #ffffff;
+    }
+
+    .lang-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-hero {
+      text-align: left;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(2, 132, 199, 0.2);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #7dd3fc;
+      padding: 0.35rem 0.85rem;
+      border-radius: 30px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+    .header-hero h2 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+      color: #ffffff;
+    }
+
+    .header-hero p {
+      font-size: 1.05rem;
+      color: #94a3b8;
+      max-width: 680px;
+    }
+
+    .effective-date {
+      margin-top: 1.25rem;
+      font-size: 0.85rem;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* Highlights Banner */
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1rem;
+      margin-top: -2.5rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .highlight-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--slate-200);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .highlight-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .highlight-card:nth-child(2) .highlight-icon {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    .highlight-card:nth-child(3) .highlight-icon {
+      background: #fef3c7;
+      color: #d97706;
+    }
+
+    .highlight-card:nth-child(4) .highlight-icon {
+      background: #ede9fe;
+      color: #7c3aed;
+    }
+
+    .highlight-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .highlight-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--slate-900);
+    }
+
+    .highlight-card p {
+      font-size: 0.82rem;
+      color: var(--slate-500);
+      line-height: 1.45;
+    }
+
+    /* Main Content */
+    main {
+      padding-bottom: 4rem;
+    }
+
+    .content-box {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 2.25rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--slate-200);
+      margin-bottom: 1.75rem;
+    }
+
+    .content-box h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--slate-900);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      letter-spacing: -0.015em;
+    }
+
+    .content-box h3 .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .content-box p {
+      margin-bottom: 1rem;
+      color: var(--slate-600);
+      font-size: 0.95rem;
+    }
+
+    .content-box ul {
+      margin-left: 1.25rem;
+      margin-bottom: 1rem;
+      color: var(--slate-600);
+      font-size: 0.95rem;
+    }
+
+    .content-box li {
+      margin-bottom: 0.5rem;
+    }
+
+    .content-box strong {
+      color: var(--slate-900);
+    }
+
+    /* Comparison Table */
+    .table-responsive {
+      overflow-x: auto;
+      margin: 1.25rem 0;
+      border-radius: 8px;
+      border: 1px solid var(--slate-200);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    th {
+      background: var(--slate-100);
+      color: var(--slate-800);
+      padding: 0.85rem 1rem;
+      font-weight: 700;
+      border-bottom: 1px solid var(--slate-200);
+    }
+
+    td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--slate-200);
+      color: var(--slate-600);
+      vertical-align: top;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background-color: var(--slate-50);
+    }
+
+    .badge-grant {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: var(--accent-light);
+      color: #065f46;
+    }
+
+    .badge-ondemand {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+
+    /* Callout Note */
+    .callout {
+      background: var(--primary-light);
+      border-left: 4px solid var(--primary);
+      padding: 1rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.25rem 0;
+      font-size: 0.92rem;
+      color: #0c4a6e;
+    }
+
+    .callout strong {
+      color: #0369a1;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--slate-900);
+      color: var(--slate-400);
+      padding: 2.5rem 1.5rem;
+      font-size: 0.85rem;
+      border-top: 1px solid var(--slate-800);
+      text-align: center;
+    }
+
+    footer a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-brand {
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Print Style */
+    @media print {
+      body {
+        background: #ffffff;
+        color: #000000;
+      }
+      header {
+        background: none;
+        color: #000000;
+        padding: 1rem 0;
+        border-bottom: 2px solid #000000;
+      }
+      header::before {
+        display: none;
+      }
+      .lang-switcher {
+        display: none;
+      }
+      .badge-pill {
+        border: 1px solid #000000;
+        color: #000000;
+      }
+      .header-hero h2, .brand-text h1 {
+        color: #000000;
+      }
+      .highlights-grid {
+        margin-top: 1rem;
+      }
+      .content-box {
+        box-shadow: none;
+        border: 1px solid #cccccc;
+        page-break-inside: avoid;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .header-hero h2 {
+        font-size: 1.75rem;
+      }
+      .content-box {
+        padding: 1.5rem 1.15rem;
+      }
+      .highlights-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Language display switching */
+    body.show-en .lang-vi {
+      display: none !important;
+    }
+
+    body.show-vi .lang-en {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="show-vi">
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-top">
+        <a href="#" class="brand" title="Vẽ Sơ Đồ Điện - PIC2AI">
+          <div class="brand-icon">
+            <!-- Electrical lightning & pole icon -->
+            <svg viewBox="0 0 24 24">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1 class="lang-vi">Vẽ Sơ Đồ Điện</h1>
+            <h1 class="lang-en">Electrical Schematic CAD</h1>
+            <span>PIC2AI • VeSoDoKhaoSat</span>
+          </div>
+        </a>
+
+        <!-- Bilingual Switcher Button -->
+        <div class="lang-switcher" role="group" aria-label="Language Switcher">
+          <button type="button" class="lang-btn active" id="btn-vi" onclick="switchLang('vi')">
+            🇻🇳 Tiếng Việt
+          </button>
+          <button type="button" class="lang-btn" id="btn-en" onclick="switchLang('en')">
+            🇬🇧 English
+          </button>
+        </div>
+      </div>
+
+      <div class="header-hero">
+        <div class="badge-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span class="lang-vi">Chính Sách Quyền Riêng Tư & An Toàn Dữ Liệu</span>
+          <span class="lang-en">Privacy Policy & Data Safety</span>
+        </div>
+        <h2 class="lang-vi">Minh Bạch & Tôn Trọng Tuyệt Đối Quyền Riêng Tư Của Bạn</h2>
+        <h2 class="lang-en">Transparent & Zero-Tracking Privacy by Design</h2>
+        <p class="lang-vi">
+          Chính sách này giải thích cách ứng dụng <strong>Vẽ Sơ Đồ Điện</strong> (tên định danh: <code>PIC2AI.Vsin</code> / <code>com.vesodo.khaosat</code>) vận hành, xử lý quyền truy cập thiết bị và cam kết bảo vệ dữ liệu kỹ thuật của kỹ sư điện lực.
+        </p>
+        <p class="lang-en">
+          This Privacy Policy outlines how <strong>Electrical Schematic CAD</strong> (VeSoDoKhaoSat, Package: <code>PIC2AI.Vsin</code> / <code>com.vesodo.khaosat</code>) handles device permissions and protects user technical survey data.
+        </p>
+        <div class="effective-date">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <span class="lang-vi">Ngày có hiệu lực: <strong>19 tháng 11 năm 2026</strong> (Phiên bản 1.0.2)</span>
+          <span class="lang-en">Effective Date: <strong>November 19, 2026</strong> (Version 1.0.2)</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Highlights Grid -->
+    <div class="highlights-grid">
+      <div class="highlight-card">
+        <div class="highlight-icon">
+          <svg viewBox="0 0 24 24"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
+        </div>
+        <h4 class="lang-vi">100% Offline-First</h4>
+        <h4 class="lang-en">100% Offline-First</h4>
+        <p class="lang-vi">Hoạt động độc lập không cần Internet. Không bắt buộc tạo tài khoản hay đăng nhập để vẽ CAD.</p>
+        <p class="lang-en">Fully operational without Internet. Zero account creation required for technical CAD drafting.</p>
+      </div>
+
+      <div class="highlight-card">
+        <div class="highlight-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
+        <h4 class="lang-vi">Không Quảng Cáo & Theo Dõi</h4>
+        <h4 class="lang-en">No Ads & No Tracking</h4>
+        <p class="lang-vi">Không chèn quảng cáo, không tích hợp SDK thu thập hành vi, không theo dõi định danh cá nhân.</p>
+        <p class="lang-en">Ad-free. No behavioral tracking SDKs, no advertising IDs, zero telemetry profiling.</p>
+      </div>
+
+      <div class="highlight-card">
+        <div class="highlight-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        </div>
+        <h4 class="lang-vi">GPS Theo Nhu Cầu</h4>
+        <h4 class="lang-en">On-Demand GPS Only</h4>
+        <p class="lang-vi">Chỉ lấy vị trí khi bạn chủ động bấm nút "Lấy tọa độ". Tuyệt đối không chạy ngầm dò vị trí.</p>
+        <p class="lang-en">Location is accessed only upon explicit user click. Never tracks in the background.</p>
+      </div>
+
+      <div class="highlight-card">
+        <div class="highlight-icon">
+          <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+        </div>
+        <h4 class="lang-vi">Lưu Trữ Cục Bộ An Toàn</h4>
+        <h4 class="lang-en">Local Data Ownership</h4>
+        <p class="lang-vi">Bản vẽ CAD, DXF, PDF và SQLite lưu trữ hoàn toàn trên thiết bị của bạn.</p>
+        <p class="lang-en">CAD drawings, DXF, PDF, and SQLite cache reside exclusively on your local device storage.</p>
+      </div>
+    </div>
+
+    <!-- Section 1: Overview -->
+    <section class="content-box">
+      <h3>
+        <span class="num">1</span>
+        <span class="lang-vi">Tổng Quan & Triết Lý Quyền Riêng Tư</span>
+        <span class="lang-en">Overview & Privacy Philosophy</span>
+      </h3>
+      <div class="lang-vi">
+        <p>
+          Ứng dụng <strong>Vẽ Sơ Đồ Điện</strong> (tên kỹ thuật: <strong>VeSoDoKhaoSat</strong>) được phát triển bởi <strong>PIC2AI</strong> nhằm phục vụ cán bộ kỹ thuật, kỹ sư điện lực và chuyên viên thiết kế CAD trong việc lập sơ đồ cấp điện hiện trường, số hóa lưới điện phân phối hạ thế và xuất file CAD (.DXF), PDF, ảnh JPG.
+        </p>
+        <p>
+          Chúng tôi xây dựng phần mềm với triết lý <strong>Privacy-by-Design (Bảo mật ngay từ thiết kế)</strong>:
+        </p>
+        <ul>
+          <li><strong>Không yêu cầu thông tin cá nhân:</strong> Ứng dụng không yêu cầu họ tên, số điện thoại, danh bạ, địa chỉ email cá nhân hay mạng xã hội để sử dụng các tính năng thiết kế sơ đồ.</li>
+          <li><strong>Độc lập ngoại tuyến:</strong> Ứng dụng có thể cài đặt và sử dụng độc lập trên máy tính Windows hoặc thiết bị Android/iOS mà không cần bất kỳ kết nối mạng nào.</li>
+          <li><strong>Quyền sở hữu thuộc về bạn:</strong> Mọi bản vẽ, số liệu đo đạc, danh sách trụ và thông số kỹ thuật do bạn tạo ra đều là tài sản riêng của bạn và cơ quan của bạn. Chúng tôi không bao giờ sao chép hay tải các bản vẽ đó về máy chủ của PIC2AI.</li>
+        </ul>
+      </div>
+      <div class="lang-en">
+        <p>
+          <strong>Electrical Schematic CAD</strong> (technical name: <strong>VeSoDoKhaoSat</strong>) is developed by <strong>PIC2AI</strong> to empower electrical utility engineers, field surveyors, and CAD drafters to survey distribution networks, draft technical schematics, and export vector CAD (.DXF), PDF, and JPG drawings.
+        </p>
+        <p>
+          Our application is built upon the core philosophy of <strong>Privacy-by-Design</strong>:
+        </p>
+        <ul>
+          <li><strong>No Personal Identifiers Required:</strong> You can draft schematics without submitting your name, phone number, contacts, personal email, or social accounts.</li>
+          <li><strong>Offline-First Independence:</strong> The software runs autonomously on Windows PCs, Android, and iOS devices without requiring an active Internet connection.</li>
+          <li><strong>Full Data Ownership:</strong> All CAD diagrams, survey spans, pole coordinates, and dossiers created within the app belong solely to you and your enterprise. PIC2AI never uploads or inspects your drawings.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section 2: Permissions -->
+    <section class="content-box">
+      <h3>
+        <span class="num">2</span>
+        <span class="lang-vi">Khai Báo & Mục Đích Sử Dụng Quyền Hệ Thống</span>
+        <span class="lang-en">Device Permissions & Clear Usage Purpose</span>
+      </h3>
+      <p class="lang-vi">
+        Ứng dụng chỉ yêu cầu những quyền hạn tối thiểu tuyệt đối cần thiết để thực thi các tác vụ kỹ thuật cụ thể theo đúng lệnh của người dùng:
+      </p>
+      <p class="lang-en">
+        The application requests only the strictly necessary system capabilities required to carry out technical drafting tasks initiated by the user:
+      </p>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 25%;"><span class="lang-vi">Quyền hạn</span><span class="lang-en">Permission</span></th>
+              <th style="width: 20%;"><span class="lang-vi">Phương thức</span><span class="lang-en">Mechanism</span></th>
+              <th style="width: 55%;"><span class="lang-vi">Mục đích sử dụng & Cam kết an toàn</span><span class="lang-en">Purpose & Safety Guarantee</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <strong>Vị trí (GPS / Location)</strong><br>
+                <code style="font-size: 0.78rem;">ACCESS_FINE_LOCATION</code>
+              </td>
+              <td><span class="badge-ondemand">Chỉ khi bấm nút</span></td>
+              <td>
+                <span class="lang-vi">
+                  Lấy tọa độ vĩ độ (Latitude) và kinh độ (Longitude) tại hiện trường để gắn vào thông tin vị trí Trụ điện, Trạm biến áp hoặc tạo mã QR định danh hồ sơ khảo sát.<br>
+                  <strong>Cam kết:</strong> Tuyệt đối KHÔNG chạy ngầm (no background location), KHÔNG ghi nhật ký di chuyển (no travel history tracking) và KHÔNG chia sẻ dữ liệu vị trí cho bất kỳ bên thứ ba nào.
+                </span>
+                <span class="lang-en">
+                  Captures real-time device coordinates to georeference poles, substations, and survey QR code stamps.<br>
+                  <strong>Guarantee:</strong> No background location polling, no movement history tracking, and zero location data shared with third parties.
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Mạng Internet (Network)</strong><br>
+                <code style="font-size: 0.78rem;">INTERNET</code> / <code style="font-size: 0.78rem;">ACCESS_NETWORK_STATE</code>
+              </td>
+              <td><span class="badge-ondemand">Tùy chọn ngoại tuyến</span></td>
+              <td>
+                <span class="lang-vi">
+                  Dùng để: (1) Tải các mảnh bản đồ số (Tiles từ OpenStreetMap, Esri, CARTO); (2) Nạp dữ liệu hình học các tuyến đường xung quanh qua Overpass API (bán kính 300m); (3) Kết nối máy chủ GPSGO chuyên ngành nếu kỹ sư chọn đăng nhập để tải danh mục trụ.<br>
+                  <strong>Cam kết:</strong> Ứng dụng vận hành hoàn hảo ở chế độ Offline. Khi không có mạng, hệ thống sử dụng bộ nhớ đệm (cache) cục bộ mà không báo lỗi.
+                </span>
+                <span class="lang-en">
+                  Used exclusively to: (1) Stream digital basemap tiles (OpenStreetMap, Esri, CARTO); (2) Fetch roadway vector geometry via Overpass API within 300m radius; (3) Authenticate with enterprise utility servers (GPSGO) when requested.<br>
+                  <strong>Guarantee:</strong> 100% offline-ready. Utilizes local SQLite cache seamlessly without network dependencies.
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Lưu trữ & Tệp tin (Storage)</strong><br>
+                <code style="font-size: 0.78rem;">Scoped Storage / MediaStore</code>
+              </td>
+              <td><span class="badge-grant">Theo chỉ định</span></td>
+              <td>
+                <span class="lang-vi">
+                  Ghi tệp bản vẽ CAD (.DXF), tài liệu in PDF và ảnh JPG vào thư mục do người dùng tự tay chọn (qua File Picker trên Desktop) hoặc thư mục Ảnh chuẩn (qua MediaStore trên Android - không cần quyền truy cập bộ nhớ toàn bộ thiết bị).<br>
+                  <strong>Cam kết:</strong> Không bao giờ đọc, quét hoặc truy xuất các tệp tin cá nhân khác trên máy của bạn.
+                </span>
+                <span class="lang-en">
+                  Saves technical CAD drawings (.DXF), print dossiers (PDF), and diagram images (JPG) into user-designated folders (via native file pickers or Android MediaStore zero-permission API).<br>
+                  <strong>Guarantee:</strong> Never scans or accesses unrelated personal files.
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Quyền Desktop MSIX</strong><br>
+                <code style="font-size: 0.78rem;">runFullTrust</code>
+              </td>
+              <td><span class="badge-grant">Windows Store</span></td>
+              <td>
+                <span class="lang-vi">
+                  Quyền chuẩn bắt buộc đối với ứng dụng Windows Desktop Bridge (chạy file thực thi <code>VeSoDoKhaoSat.exe</code> kèm máy ảo Java nhúng riêng biệt, quản lý cơ sở dữ liệu SQLite và tương tác giao tiếp với chuột/bàn phím/canvas vẽ đồ họa vector Skiko).
+                </span>
+                <span class="lang-en">
+                  Standard requirement for Windows Desktop Bridge (MSIX) applications to execute native binaries with private embedded JRE, manage SQLite caching, and interface with Skiko vector graphics rendering.
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 3: Optional Enterprise Login -->
+    <section class="content-box">
+      <h3>
+        <span class="num">3</span>
+        <span class="lang-vi">Chức Năng Đăng Nhập Tùy Chọn & Dữ Liệu Doanh Nghiệp</span>
+        <span class="lang-en">Optional Enterprise Login & Utility Data Safety</span>
+      </h3>
+      <div class="lang-vi">
+        <p>
+          Ứng dụng tích hợp cổng đăng nhập tùy chọn (dịch vụ <code>GpsGoAuthService</code>) dành riêng cho các kỹ sư, cán bộ kỹ thuật thuộc đơn vị quản lý điện lực:
+        </p>
+        <ul>
+          <li><strong>Không bắt buộc đăng nhập:</strong> Mọi tính năng vẽ sơ đồ kỹ thuật, đo đạc khoảng cách, bố trí icon thiết bị điện và xuất file CAD đều sử dụng bình thường 100% mà không cần đăng nhập tài khoản.</li>
+          <li><strong>Mục đích đăng nhập:</strong> Chỉ khi người dùng chủ động đăng nhập bằng tài khoản nội bộ ngành điện, ứng dụng mới kết nối trực tiếp đến máy chủ quản lý dữ liệu chuyên ngành để tải danh mục Trạm biến áp, vị trí cột hạ thế thực tế và hỗ trợ đối chiếu thông tin khách hàng cấp điện.</li>
+          <li><strong>Bảo mật mật khẩu:</strong> Thông tin đăng nhập được truyền tải trực tiếp qua giao thức mã hóa an toàn (HTTPS/SSL) đến máy chủ của Đơn vị. <strong>PIC2AI tuyệt đối không lưu giữ mật khẩu của bạn trên bất kỳ máy chủ trung gian nào.</strong></li>
+        </ul>
+      </div>
+      <div class="lang-en">
+        <p>
+          The application offers an optional enterprise authentication portal (<code>GpsGoAuthService</code>) tailored for power utility personnel:
+        </p>
+        <ul>
+          <li><strong>Strictly Optional:</strong> All core CAD vector tools, span measurement engines, and DXF/PDF export functions are fully accessible without logging in.</li>
+          <li><strong>Purpose of Login:</strong> When authenticated with authorized utility credentials, the app synchronizes real-world substation registries, low-voltage pole coordinates, and metering points directly from official utility servers.</li>
+          <li><strong>Credential Safety:</strong> Login requests travel directly via encrypted channels (HTTPS/TLS) to the enterprise authority. <strong>PIC2AI never intercepts, logs, or stores your passwords on any third-party server.</strong></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section 4: Map & Third Party Attribution -->
+    <section class="content-box">
+      <h3>
+        <span class="num">4</span>
+        <span class="lang-vi">Dịch Vụ Bản Đồ Số & Tuân Thủ Bản Quyền Quốc Tế</span>
+        <span class="lang-en">Digital Mapping Services & Attribution Compliance</span>
+      </h3>
+      <div class="lang-vi">
+        <p>
+          Để hỗ trợ khảo sát thực địa trực quan, <strong>Vẽ Sơ Đồ Điện</strong> tích hợp các nguồn bản đồ số mở uy tín:
+        </p>
+        <ul>
+          <li><strong>OpenStreetMap (OSM):</strong> Bản đồ đường phố toàn cầu và nạp dữ liệu hình học mạng lưới đường vector qua OpenStreetMap Overpass API (trong bán kính 300m quanh khu vực khảo sát).</li>
+          <li><strong>Esri Basemaps:</strong> Bản đồ ảnh vệ tinh độ phân giải cao (World Imagery) và bản đồ xám kỹ thuật (Light Gray Base).</li>
+          <li><strong>CARTO:</strong> Bản đồ nền tối giản Positron.</li>
+        </ul>
+        <div class="callout">
+          <strong>Tuân thủ bản quyền minh bạch:</strong> Nhãn bản quyền bản đồ (Attribution Badge) luôn được hiển thị cố định và rõ ràng tại <strong>GÓC PHẢI BÊN DƯỚI</strong> của toàn bộ màn hình bản đồ trong ứng dụng (ví dụ: <code>© OpenStreetMap contributors</code> hoặc <code>Tiles © Esri — Source: Esri, USGS</code>), tuân thủ tuyệt đối giấy phép Open Database License (ODbL) và các điều khoản nhà cung cấp.
+        </div>
+      </div>
+      <div class="lang-en">
+        <p>
+          To provide accurate geographic context during technical surveys, <strong>Electrical Schematic CAD</strong> incorporates trusted digital mapping sources:
+        </p>
+        <ul>
+          <li><strong>OpenStreetMap (OSM):</strong> Street networks and local roadway geometry ingested via the Overpass API (within a 300-meter radius).</li>
+          <li><strong>Esri Basemaps:</strong> High-resolution satellite World Imagery and Light Gray Canvas technical basemaps.</li>
+          <li><strong>CARTO:</strong> Minimalist technical vector tile styles.</li>
+        </ul>
+        <div class="callout">
+          <strong>Strict Licensing Compliance:</strong> A prominent map attribution badge is permanently rendered at the <strong>BOTTOM-RIGHT CORNER</strong> of all map displays (e.g., <code>© OpenStreetMap contributors</code> or <code>Tiles © Esri — Source: Esri, USGS</code>) in full compliance with the OpenStreetMap Foundation ODbL License and Esri Master Terms.
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Local Storage & Data Control -->
+    <section class="content-box">
+      <h3>
+        <span class="num">5</span>
+        <span class="lang-vi">Lưu Trữ Cục Bộ, Kiểm Soát & Xóa Dữ Liệu</span>
+        <span class="lang-en">Local Data Storage & Your Deletion Rights</span>
+      </h3>
+      <div class="lang-vi">
+        <p>
+          Bạn có toàn quyền kiểm soát tuyệt đối 100% đối với dữ liệu của mình:
+        </p>
+        <ul>
+          <li><strong>Vị trí lưu trữ:</strong> Dữ liệu cấu hình, bộ nhớ đệm bản đồ đường và các tệp sơ đồ mẫu được lưu trữ cục bộ trong cơ sở dữ liệu SQLite trên ổ đĩa máy tính hoặc bộ nhớ ứng dụng của thiết bị di động.</li>
+          <li><strong>Quyền xóa bỏ hoàn toàn:</strong> Bạn có thể xóa toàn bộ dữ liệu khảo sát và bộ nhớ đệm bất cứ lúc nào bằng cách: (1) Sử dụng tính năng "Xóa bản vẽ / Khởi tạo lại" trong ứng dụng; (2) Xóa dữ liệu ứng dụng trong phần Cài đặt của hệ điều hành; hoặc (3) Gỡ cài đặt (Uninstall) phần mềm khỏi thiết bị. Khi gỡ cài đặt, toàn bộ dữ liệu nội bộ sẽ được xóa sạch sẽ khỏi hệ thống.</li>
+        </ul>
+      </div>
+      <div class="lang-en">
+        <p>
+          You maintain full sovereignty over all technical and project data:
+        </p>
+        <ul>
+          <li><strong>Storage Location:</strong> Project settings, cached roadway vectors, and template records reside locally in a dedicated SQLite database on your device drive.</li>
+          <li><strong>Complete Deletion Rights:</strong> You can purge all application cache and drawings at any time by: (1) Invoking the "Clear Canvas / Reset" feature; (2) Clearing App Storage within Windows/Android Settings; or (3) Uninstalling the application. Upon uninstallation, all private cached assets are permanently expunged.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section 6: Children & Changes -->
+    <section class="content-box">
+      <h3>
+        <span class="num">6</span>
+        <span class="lang-vi">Quyền Riêng Tư Của Trẻ Em & Cập Nhật Chính Sách</span>
+        <span class="lang-en">Children’s Privacy & Policy Updates</span>
+      </h3>
+      <div class="lang-vi">
+        <p>
+          <strong>Bảo vệ trẻ em:</strong> Phần mềm của chúng tôi là công cụ kỹ thuật dành cho đối tượng kỹ sư và người trưởng thành. Chúng tôi không thu thập bất kỳ thông tin nào từ bất kỳ người dùng nào, bao gồm trẻ em dưới 13 tuổi (tuân thủ COPPA và các quy định pháp luật quốc tế).
+        </p>
+        <p>
+          <strong>Cập nhật chính sách:</strong> Chúng tôi có thể cập nhật chính sách này khi có các tính năng kỹ thuật mới được bổ sung. Mọi thay đổi đều sẽ được phản ánh bằng cách cập nhật ngày "Có hiệu lực" ở đầu trang và đăng tải công khai trên bản phát hành chính thức.
+        </p>
+      </div>
+      <div class="lang-en">
+        <p>
+          <strong>Children’s Privacy:</strong> Our application is an engineering CAD utility intended for adult technical professionals. We do not solicit or gather data from anyone, including children under 13 years of age, complying strictly with COPPA regulations.
+        </p>
+        <p>
+          <strong>Policy Updates:</strong> We may revise this Privacy Policy periodically as new engineering capabilities are released. The latest revisions will always be designated by the "Effective Date" at the top of this document.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 7: Contact -->
+    <section class="content-box">
+      <h3>
+        <span class="num">7</span>
+        <span class="lang-vi">Thông Tin Liên Hệ & Nhà Phát Triển</span>
+        <span class="lang-en">Developer Contact Information</span>
+      </h3>
+      <div class="lang-vi">
+        <p>
+          Nếu bạn có bất kỳ câu hỏi, góp ý hoặc cần hỗ trợ về chính sách quyền riêng tư của ứng dụng <strong>Vẽ Sơ Đồ Điện</strong>, vui lòng liên hệ với nhóm phát triển:
+        </p>
+        <ul>
+          <li><strong>Đơn vị phát triển:</strong> PIC2AI</li>
+          <li><strong>Ứng dụng:</strong> Vẽ Sơ Đồ Điện (VeSoDoKhaoSat)</li>
+          <li><strong>Mã định danh gói (Microsoft Store):</strong> <code>PIC2AI.Vsin</code></li>
+          <li><strong>Mã định danh nhà phát hành:</strong> <code>CN=88CB712E-0F7D-48C1-B3C5-070C3CF2D183</code></li>
+          <li><strong>Hỗ trợ kỹ thuật:</strong> Kỹ thuật viên & Kỹ sư khảo sát lưới điện</li>
+        </ul>
+      </div>
+      <div class="lang-en">
+        <p>
+          If you have any questions, inquiries, or feedback regarding this Privacy Policy for <strong>Electrical Schematic CAD</strong>, please reach out to the development team:
+        </p>
+        <ul>
+          <li><strong>Developer / Publisher:</strong> PIC2AI</li>
+          <li><strong>Application:</strong> Electrical Schematic CAD (VeSoDoKhaoSat)</li>
+          <li><strong>Package Identity (Microsoft Store):</strong> <code>PIC2AI.Vsin</code></li>
+          <li><strong>Publisher ID:</strong> <code>CN=88CB712E-0F7D-48C1-B3C5-070C3CF2D183</code></li>
+          <li><strong>Audience:</strong> Power grid technicians, surveyors, and CAD engineers</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-brand">PIC2AI • Vẽ Sơ Đồ Điện (VeSoDoKhaoSat)</div>
+      <p class="lang-vi">
+        Bản quyền &copy; 2026 PIC2AI. Bảo lưu mọi quyền. Tuân thủ tiêu chuẩn Microsoft Store, Google Play Store và Apple App Store.
+      </p>
+      <p class="lang-en">
+        Copyright &copy; 2026 PIC2AI. All rights reserved. Compliant with Microsoft Store, Google Play Store, and Apple App Store standards.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Language Switch Script -->
+  <script>
+    function switchLang(lang) {
+      const body = document.body;
+      const btnVi = document.getElementById('btn-vi');
+      const btnEn = document.getElementById('btn-en');
+
+      if (lang === 'en') {
+        body.classList.remove('show-vi');
+        body.classList.add('show-en');
+        btnEn.classList.add('active');
+        btnVi.classList.remove('active');
+        document.documentElement.lang = 'en';
+        document.title = 'Privacy Policy | Electrical Schematic CAD - PIC2AI';
+      } else {
+        body.classList.remove('show-en');
+        body.classList.add('show-vi');
+        btnVi.classList.add('active');
+        btnEn.classList.remove('active');
+        document.documentElement.lang = 'vi';
+        document.title = 'Chính Sách Quyền Riêng Tư | Vẽ Sơ Đồ Điện - PIC2AI';
+      }
+    }
+
+    // Auto detect browser language preference if English
+    (function initLanguage() {
+      const userLang = navigator.language || navigator.userLanguage;
+      if (userLang && userLang.toLowerCase().startsWith('en')) {
+        switchLang('en');
+      }
+    })();
+  </script>
+</body>
+</html>
